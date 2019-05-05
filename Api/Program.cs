@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace HomeCTRL.Backend
+namespace HomeCTRL.Backend.Api
 {
     public class Program
     {

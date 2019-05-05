@@ -73,7 +73,7 @@ namespace HomeCTRL.Backend.Core.Auth
             DateTime? expirationDate = null,
             string signingKey = null)
         {
-            IdentityModelEventSource.ShowPII = false;
+            //IdentityModelEventSource.ShowPII = false;
             
             var tokenHandler = new JwtSecurityTokenHandler();
             byte[] key;

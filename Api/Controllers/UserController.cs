@@ -2,7 +2,7 @@ using System;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading.Tasks;
-using HomeCTRL.Backend.Api.DTO;
+using HomeCTRL.Backend.Core.DTO;
 using HomeCTRL.Backend.Core.Exceptions;
 using HomeCTRL.Backend.Features.Users;
 using HomeCTRL.Backend.Features.Users.Repository;

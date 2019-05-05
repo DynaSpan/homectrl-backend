@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using HomeCTRL.Backend.Api.DTO;
+using HomeCTRL.Backend.Core.DTO;
 
 namespace HomeCTRL.Backend.Features.Users.Service
 {

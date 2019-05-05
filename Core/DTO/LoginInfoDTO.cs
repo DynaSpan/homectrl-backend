@@ -1,4 +1,4 @@
-namespace HomeCTRL.Backend.Api.DTO
+namespace HomeCTRL.Backend.Core.DTO
 {
     public class LoginInfoDTO
     {

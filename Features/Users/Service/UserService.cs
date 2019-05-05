@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
-using HomeCTRL.Backend.Api.DTO;
 using HomeCTRL.Backend.Core.Auth;
+using HomeCTRL.Backend.Core.DTO;
 using HomeCTRL.Backend.Core.Exceptions;
 using HomeCTRL.Backend.Features.Users.Repository;
 

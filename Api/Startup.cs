@@ -6,19 +6,19 @@ using AutoMapper;
 using HomeCTRL.Backend.Core.Auth;
 using HomeCTRL.Backend.Core.Database;
 using HomeCTRL.Backend.Core.Models;
+using HomeCTRL.Backend.Core.Plugins;
 using HomeCTRL.Backend.Features.Users;
 using HomeCTRL.Backend.Features.Users.Repository;
 using HomeCTRL.Backend.Features.Users.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace HomeCTRL.Backend
+namespace HomeCTRL.Backend.Api
 {
     public class Startup
     {
@@ -52,6 +52,20 @@ namespace HomeCTRL.Backend
             var authServicesHelper = new AuthServicesHelper(services, appSettings.TokenSecret);
 
             authServicesHelper.ConfigureAuthenticationServices();
+
+            ////////////////////////
+            //   Plugin support   //
+            ////////////////////////
+            var pluginSettingsSection = Configuration.GetSection("PluginSettings");
+            services.Configure<PluginSettings>(pluginSettingsSection);
+
+            var pluginSettings = pluginSettingsSection.Get<PluginSettings>();
+            var pluginService  = new PluginService(pluginSettings);
+
+            services.AddSingleton<IPluginService>(ps => pluginService);
+
+            // Load plugins & await
+            //pluginService.LoadPlugins();
 
             ////////////////////////
             // Dependency inject. //
