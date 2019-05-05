@@ -1,0 +1,18 @@
+{
+  "DatabaseConnection": {
+    "Host": "127.0.0.1",
+    "Port": 3306,
+    "User": "admin",
+    "Password": "password",
+    "Database": "homectrl"
+  },
+  "AppSettings": {
+    "TokenSecret": "--[ enter secret here ]--",
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Warning"
+    }
+  },
+  "AllowedHosts": "*"
+}
