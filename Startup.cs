@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using HomeCTRL.Backend.Core.Auth;
 using HomeCTRL.Backend.Core.Database;
 using HomeCTRL.Backend.Core.Models;
+using HomeCTRL.Backend.Features.Users;
+using HomeCTRL.Backend.Features.Users.Repository;
+using HomeCTRL.Backend.Features.Users.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -48,6 +52,14 @@ namespace HomeCTRL.Backend
             var authServicesHelper = new AuthServicesHelper(services, appSettings.TokenSecret);
 
             authServicesHelper.ConfigureAuthenticationServices();
+
+            ////////////////////////
+            // Dependency inject. //
+            ////////////////////////
+            services.AddScoped<IAuthServicesHelper>(ash => authServicesHelper); 
+            
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,6 +76,10 @@ namespace HomeCTRL.Backend
             ////////////////
             // AutoMapper //
             ////////////////
+            Mapper.Initialize(cfg => {
+                cfg.CreateMap<UserEntity, User>();
+                cfg.CreateMap<User, UserEntity>();
+            });
         }
     }
 }
