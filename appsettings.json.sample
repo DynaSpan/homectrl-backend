@@ -9,6 +9,15 @@
   "AppSettings": {
     "TokenSecret": "--[ enter secret here ]--",
   },
+  "PluginSettings": {
+    "RegisteredPlugins": [
+      {
+        "Name": "HomeCTRL Plugin Example",
+        "Path": "../empty-plugin/bin/Debug/netstandard2.0/HomeCTRL.Plugin.EmptyExample.dll",
+        "RootNamespace": "HomeCTRL.Plugin.EmptyExample"
+      }
+    ]
+  },
   "Logging": {
     "LogLevel": {
       "Default": "Warning"
