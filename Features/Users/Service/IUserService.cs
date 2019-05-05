@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using HomeCTRL.Backend.Api.DTO;
 
@@ -12,5 +14,18 @@ namespace HomeCTRL.Backend.Features.Users.Service
         /// <exception cref="InputException">When credentials are invalid</exception>
         /// <returns></returns>
         Task<TokenDTO> AuthenticateUser(LoginInfoDTO loginInfo);
+
+        /// <summary>
+        /// Gets all users
+        /// </summary>
+        /// <returns></returns>
+        Task<IEnumerable<User>> GetAll();
+
+        /// <summary>
+        /// Gets a user by its ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<User> Get(Guid id);
     }
 }

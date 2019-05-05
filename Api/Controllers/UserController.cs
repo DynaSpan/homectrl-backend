@@ -1,4 +1,6 @@
 using System;
+using System.Security.Claims;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using HomeCTRL.Backend.Api.DTO;
 using HomeCTRL.Backend.Core.Exceptions;
@@ -17,12 +19,16 @@ namespace HomeCTRL.Backend.Api.Controllers
     {
         private readonly IUserService userService;
         private readonly IUserRepository userRepo;
+        private readonly ClaimsPrincipal currentPrincipal;
         
-        public UserController(IUserService userService, IUserRepository userrepo)
+        public UserController(
+            IUserService userService, 
+            IUserRepository userrepo,
+            IPrincipal currentPrincipal)
         {
             this.userService = userService;
             this.userRepo = userrepo;
-            
+            this.currentPrincipal = currentPrincipal as ClaimsPrincipal;
         }
 
         // POST /api/user/login
@@ -43,6 +49,15 @@ namespace HomeCTRL.Backend.Api.Controllers
             {
                 return BadRequest(new { message = e.Message });
             }
+        }
+
+        // GET /api/user/me
+        [HttpGet("me")]
+        public Task<User> Me()
+        {
+            var currentUserId = this.currentPrincipal.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            return this.userService.Get(new Guid(currentUserId));
         }
     }
 }

@@ -54,5 +54,10 @@ namespace HomeCTRL.Backend.Features.Users.Service
         {
             return Mapper.Map<IEnumerable<User>>(await this.userRepository.GetAll());
         }
+
+        public async Task<User> Get(Guid id)
+        {
+            return Mapper.Map<User>(await this.userRepository.Get(id));
+        }
     }
 }
