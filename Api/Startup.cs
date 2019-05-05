@@ -65,7 +65,7 @@ namespace HomeCTRL.Backend.Api
             services.AddSingleton<IPluginService>(ps => pluginService);
 
             // Load plugins & await
-            //pluginService.LoadPlugins();
+            pluginService.LoadPlugins();
 
             ////////////////////////
             // Dependency inject. //
