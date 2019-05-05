@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.1.0" />
+    <PackageReference Include="BCrypt.Net-Core" Version="1.6.0" />
     <PackageReference Include="Dapper" Version="1.60.9" />
     <PackageReference Include="Dapper.Contrib" Version="1.60.1" />
     <PackageReference Include="MicroOrm.Dapper.Repositories" Version="1.8.3" />

@@ -16,7 +16,7 @@ namespace HomeCTRL.Backend.Core.Database.Repository
 {
     public class BaseEntityRepository<T> : IBaseEntityRepository<T> where T : BaseEntity
     {
-        private IDatabaseFactory DbFactory { get; set; }
+        protected IDatabaseFactory DbFactory { get; set; }
 
         public BaseEntityRepository(IDatabaseFactory dbFactory)
         {

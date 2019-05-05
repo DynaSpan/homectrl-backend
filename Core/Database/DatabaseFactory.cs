@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
@@ -15,8 +16,8 @@ namespace HomeCTRL.Backend.Core.Database
         {
             this.connectionString = this.ConstructConnectionString(dbSettings);
 
-            SqlMapper.AddTypeHandler(typeof(Dictionary<int, object>), new JsonObjectTypeHandler());
-	        SqlMapper.AddTypeHandler(typeof(string[]),                new JsonObjectTypeHandler());
+            SqlMapper.AddTypeHandler(typeof(Dictionary<int, object>),   new JsonObjectTypeHandler());
+            SqlMapper.AddTypeHandler(typeof(string[]),                  new JsonObjectTypeHandler());
         }
 
         /// <summary>
