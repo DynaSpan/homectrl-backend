@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Runtime.Loader;
@@ -9,14 +10,16 @@ using HomeCTRL.Plugin;
 
 namespace HomeCTRL.Backend.Core.Plugins
 {
-    public class PluginService : IPluginService
+    public class PluginService : IPluginService, IDisposable
     {
         private readonly string TAG = "PluginService";
         private readonly PluginSettings pluginSettings;
+        private readonly Dictionary<PluginRegister, IPlugin> pluginInstances;
 
         public PluginService(PluginSettings pluginSettings)
         {
             this.pluginSettings = pluginSettings;
+            this.pluginInstances = new Dictionary<PluginRegister, IPlugin>();
         }
 
         public async Task<bool> LoadPlugins()
@@ -40,6 +43,7 @@ namespace HomeCTRL.Backend.Core.Plugins
 
                     if (pluginStatus)
                     {
+                        this.pluginInstances.Add(plugin, pluginInstance);
                         Log.Info(this.TAG, string.Format("Successfully registered plugin {0}", plugin.Name));
                     } else {
                         Log.Error(this.TAG, string.Format("Plugin startup of {0} did not complete properly", plugin.Name));
@@ -63,6 +67,20 @@ namespace HomeCTRL.Backend.Core.Plugins
                 Log.Error(this.TAG, e.StackTrace);
 
                 return false;
+            }
+        }
+
+        public void Dispose()
+        {
+            // Dispose each plugin properly
+            foreach (KeyValuePair<PluginRegister, IPlugin> registeredPlugin in this.pluginInstances)
+            {
+                var plugin = registeredPlugin.Key;
+                var pluginInstance = registeredPlugin.Value;
+
+                Log.Info(this.TAG, string.Format("Shutting down {0}...", plugin.Name));
+
+                pluginInstance.Dispose();
             }
         }
     }

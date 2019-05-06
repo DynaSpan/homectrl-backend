@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace HomeCTRL.Plugin
 {
-    public interface IPlugin 
+    public interface IPlugin : IDisposable
     {
         /// <summary>
         /// The startup function where the plugin can do its things.
