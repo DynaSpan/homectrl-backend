@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Plugin\HomeCTRL.Plugin.csproj" />
+    <ProjectReference Include="..\..\homectrl-plugin-interface\HomeCTRL.Plugin.csproj" />
   </ItemGroup>
 
 </Project>
