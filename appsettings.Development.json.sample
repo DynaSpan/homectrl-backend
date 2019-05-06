@@ -13,8 +13,8 @@
     "RegisteredPlugins": [
       {
         "Name": "HomeCTRL Plugin Example",
-        "Path": "../empty-plugin/bin/Debug/netstandard2.0/HomeCTRL.Plugin.EmptyExample.dll",
-        "RootNamespace": "HomeCTRL.Plugin.EmptyExample"
+        "Path": "../homectrl-empty-plugin/bin/Debug/netstandard2.0/HomeCTRL.Plugin.EmptyExample.dll",
+        "RootNamespace": "Example.Plugin.EmptyExample"
       }
     ]
   },
